@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Roberta & Christian</title>
+
+<style>
+body {
+  margin: 0;
+  background: #fbf8f0;
+  color: #30382f;
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 25px 20px 45px;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 17px;
+  margin-bottom: 25px;
+}
+
+.video {
+  width: 100%;
+  margin: 20px auto;
+}
+
+.video video {
+  width: 100%;
+  max-height: 750px;
+  border-radius: 15px;
+}
+
+.card {
+  background: white;
+  padding: 25px 20px;
+  margin-top: 25px;
+  border-radius: 18px;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 30px;
+  text-decoration: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.confirm {
+  background: #303f31;
+  color: white;
+}
+
+.copy {
+  background: #e8dcae;
+  color: #30382f;
+}
+
+#iban {
+  font-family: monospace;
+  word-break: break-all;
+  margin: 15px 0;
+}
+
+#messaggio {
+  margin-top: 12px;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Roberta & Christian</h1>
+
+<div class="subtitle">
+10 Luglio 2027 · La nostra Dolce Vita 🍋
+</div>
+
+<div class="video">
+
+<video controls playsinline>
+
+<source src="Copia di Roberta & Christian.mp4" type="video/mp4">
+
+</video>
+
+</div>
+
+<div class="card">
+
+<p>
+<strong>
+È gradita gentile conferma entro il 31 Maggio 2027
+</strong>
+</p>
+
+<a class="button confirm"
+href="https://docs.google.com/forms/u/0/d/1gxAsWCoNh5LnWsVcipgqoXPMfQTcgq6Ike59wa_bkO8/viewform"
+target="_blank">
+
+🤍 CONFERMA LA TUA PRESENZA
+
+</a>
+
+</div>
+
+<div class="card">
+
+<p><strong>Un pensiero per noi</strong></p>
+
+<p>
+Se desiderate accompagnarci in questo nuovo capitolo:
+</p>
+
+<div id="iban">
+INSERISCI QUI IL TUO IBAN
+</div>
+
+<button class="button copy" onclick="copiaIBAN()">
+
+📋 COPIA IBAN
+
+</button>
+
+<div id="messaggio"></div>
+
+</div>
+
+<p style="margin-top:30px;">
+
+Grazie di cuore per condividere con noi<br>
+
+la nostra Dolce Vita. 🥂
+
+</p>
+
+</div>
+
+<script>
+
+function copiaIBAN() {
+
+const iban =
+document.getElementById("iban").innerText.trim();
+
+if (iban === "INSERISCI QUI IL TUO IBAN") {
+
+document.getElementById("messaggio").innerText =
+"Inserisci prima il tuo IBAN.";
+
+return;
+
+}
+
+navigator.clipboard.writeText(iban)
+
+.then(function() {
+
+document.getElementById("messaggio").innerText =
+"✓ IBAN copiato!";
+
+})
+
+.catch(function() {
+
+document.getElementById("messaggio").innerText =
+"Non è stato possibile copiarlo automaticamente.";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
