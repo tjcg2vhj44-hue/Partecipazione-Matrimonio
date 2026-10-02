@@ -15,7 +15,6 @@
   --paper: #fffdf8;
   --olive: #414c34;
   --olive-soft: #777d66;
-  --sand: #e9e1ce;
   --text: #30382f;
 }
 
@@ -43,22 +42,23 @@ body {
   padding: 18px 18px 42px;
 }
 
-/* COPERTINA FOTOGRAFICA REALISTICA */
+/* BUSTA FOTOGRAFICA E ANIMAZIONE */
 
 .cover-scene {
   width: 100%;
   max-width: 440px;
   margin: 0 auto;
-  opacity: 1;
-  max-height: 1800px;
   overflow: hidden;
+  max-height: 1800px;
+  opacity: 1;
   transition:
-    opacity 1s ease,
+    opacity .8s ease,
     max-height 1s ease,
     margin .8s ease;
 }
 
 .cover-button {
+  position: relative;
   display: block;
   width: 100%;
   margin: 0;
@@ -67,6 +67,8 @@ body {
   background: transparent;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  border-radius: 3px;
 }
 
 .cover-button img {
@@ -74,16 +76,52 @@ body {
   width: 100%;
   height: auto;
   border: 0;
-  border-radius: 3px;
   box-shadow: 0 12px 32px rgba(70, 58, 38, .10);
 }
 
-.cover-button:focus-visible {
-  outline: 2px solid var(--olive-soft);
-  outline-offset: 4px;
+/* La prima immagine determina le dimensioni della copertina */
+
+.closed-cover {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 1s ease,
+    transform 1.25s ease;
 }
 
-.cover-scene.opened {
+/* La seconda immagine è sovrapposta alla prima */
+
+.open-cover {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(.985);
+  transition:
+    opacity 1.1s ease,
+    transform 1.3s ease;
+}
+
+/* Quando si tocca la busta */
+
+.cover-scene.opening .closed-cover {
+  opacity: 0;
+  transform: scale(1.025);
+}
+
+.cover-scene.opening .open-cover {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* La busta aperta scompare dopo la transizione */
+
+.cover-scene.dismissed {
   opacity: 0;
   max-height: 0;
   margin-top: 0;
@@ -91,17 +129,22 @@ body {
   pointer-events: none;
 }
 
-/* PARTECIPAZIONE E CONTENUTO */
+.cover-button:focus-visible {
+  outline: 2px solid var(--olive-soft);
+  outline-offset: 4px;
+}
+
+/* PARTECIPAZIONE */
 
 .invitation {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transform: translateY(18px);
+  transform: translateY(22px);
   transition:
-    max-height 1.5s ease,
-    opacity 1s ease,
-    transform 1s ease;
+    max-height 1.6s ease,
+    opacity 1.2s ease,
+    transform 1.2s ease;
 }
 
 .invitation.visible {
@@ -231,6 +274,8 @@ body {
   color: var(--olive);
 }
 
+/* SCHERMI PICCOLI */
+
 @media (max-width: 380px) {
   .container {
     padding: 12px 13px 32px;
@@ -244,6 +289,8 @@ body {
     font-size: 19px;
   }
 }
+
+/* ACCESSIBILITÀ */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -259,7 +306,8 @@ body {
 <body>
 <div class="container">
 
-  <!-- COPERTINA REALISTICA -->
+  <!-- BUSTA CHIUSA E BUSTA APERTA -->
+
   <section class="cover-scene" id="coverScene">
     <button
       class="cover-button"
@@ -269,14 +317,24 @@ body {
       aria-controls="invitation"
       aria-expanded="false">
 
+      <!-- Immagine iniziale: busta chiusa -->
       <img
+        class="closed-cover"
         src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png"
-        alt="Roberta e Christian, 10 luglio 2027. Busta realistica in carta cotone con spago naturale e rametto d'ulivo. Tocca per aprire."
+        alt="Busta chiusa della partecipazione di Roberta e Christian"
         fetchpriority="high">
+
+      <!-- Immagine intermedia: busta aperta -->
+      <img
+        class="open-cover"
+        src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/2B8E1E39-620A-404C-AC9B-7F899BA84BA5.png"
+        alt=""
+        aria-hidden="true">
     </button>
   </section>
 
   <!-- CONTENUTO DELLA PARTECIPAZIONE -->
+
   <main class="invitation" id="invitation" inert>
 
     <img
@@ -285,6 +343,7 @@ body {
       alt="Partecipazione ad acquerello di Roberta e Christian">
 
     <!-- LOCATION -->
+
     <section class="card">
       <h2 class="card-title">La cerimonia e il ricevimento</h2>
 
@@ -304,6 +363,7 @@ body {
     </section>
 
     <!-- CONFERMA PRESENZA -->
+
     <section class="card">
       <h2 class="card-title">Saremo felici di festeggiare con voi</h2>
 
@@ -324,6 +384,7 @@ body {
     </section>
 
     <!-- IBAN -->
+
     <section class="card">
       <h2 class="card-title">Un pensiero per noi</h2>
 
@@ -344,6 +405,7 @@ body {
     </section>
 
     <!-- MESSAGGIO FINALE -->
+
     <footer class="thank-you">
       Grazie di cuore per condividere con noi<br>
       la nostra Dolce Vita.
@@ -368,12 +430,19 @@ body {
     isOpening = true;
 
     openButton.setAttribute("aria-expanded", "true");
-    coverScene.classList.add("opened");
 
+    // Prima transizione: busta chiusa -> busta aperta
+    coverScene.classList.add("opening");
+
+    // Lascia il tempo alla seconda immagine di apparire
     window.setTimeout(function () {
+      coverScene.classList.add("dismissed");
+
+      // Rivela la partecipazione completa
       invitation.inert = false;
       invitation.classList.add("visible");
 
+      // Scorre verso la partecipazione dopo la transizione
       window.setTimeout(function () {
         invitation.scrollIntoView({
           behavior: window.matchMedia(
@@ -382,8 +451,11 @@ body {
           block: "start"
         });
       }, 250);
-    }, 450);
+
+    }, 1700);
   });
+
+  // COPIA IBAN
 
   copyButton.addEventListener("click", async function () {
     const iban = document.getElementById("iban").textContent.trim();
@@ -404,5 +476,3 @@ body {
 </script>
 </body>
 </html>
-
-
