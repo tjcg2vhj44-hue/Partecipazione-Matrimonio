@@ -5,254 +5,93 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#fbf8f0">
+<meta name="description" content="La partecipazione al matrimonio di Roberta e Christian, 10 luglio 2027.">
 
-<title>Roberta & Christian</title>
+<title>Roberta &amp; Christian — 10 Luglio 2027</title>
 
 <style>
+:root {
+  --ivory: #fbf8f0;
+  --paper: #fffdf8;
+  --olive: #414c34;
+  --olive-soft: #777d66;
+  --sand: #e9e1ce;
+  --text: #30382f;
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  background: #fbf8f0;
-  color: #30382f;
-  font-family: Georgia, serif;
+  background: var(--ivory);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
   text-align: center;
+  -webkit-font-smoothing: antialiased;
 }
 
 .container {
-  max-width: 600px;
-  margin: auto;
-  padding: 30px 20px 45px;
-}
-
-h1 {
-  font-size: 30px;
-  font-weight: normal;
-  margin: 0 0 10px;
-}
-
-.subtitle {
-  font-size: 13px;
-  letter-spacing: 3px;
-  color: #777d66;
-  margin-bottom: 20px;
-}
-
-/* BUSTA RETTANGOLARE IN CARTA COTONE */
-
-.envelope-scene {
   width: 100%;
-  max-width: 390px;
-  margin: 28px auto 35px;
-  perspective: 1000px;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 18px 18px 42px;
 }
 
-.envelope {
-  position: relative;
+/* COPERTINA FOTOGRAFICA REALISTICA */
+
+.cover-scene {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  opacity: 1;
+  max-height: 1800px;
+  overflow: hidden;
+  transition:
+    opacity 1s ease,
+    max-height 1s ease,
+    margin .8s ease;
+}
+
+.cover-button {
   display: block;
   width: 100%;
-  aspect-ratio: 1.75;
+  margin: 0;
   padding: 0;
-  border: none;
+  border: 0;
   background: transparent;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
 
-.paper {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border: 1px solid #e2d9c7;
-  border-radius: 3px;
-  background-color: #f8f4e9;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(130,112,78,.035) 0px,
-      rgba(130,112,78,.035) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(130,112,78,.025) 0px,
-      rgba(130,112,78,.025) 1px,
-      transparent 1px,
-      transparent 5px
-    );
-  box-shadow: 0 12px 28px rgba(73,62,42,.13);
-}
-
-.front-fold {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: linear-gradient(145deg, #f7f2e7, #eee6d6);
-  clip-path: polygon(
-    0 0, 50% 58%, 100% 0, 100% 100%, 0 100%
-  );
-}
-
-.left-fold {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  background: #eee7d7;
-  clip-path: polygon(0 0, 53% 50%, 0 100%);
-}
-
-.right-fold {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  background: #f9f5eb;
-  clip-path: polygon(100% 0, 47% 50%, 100% 100%);
-}
-
-.bottom-fold {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  background: linear-gradient(140deg, #f9f5ea, #e9dfcc);
-  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
-}
-
-/* LEMBO APRIBILE */
-
-.flap {
-  position: absolute;
-  inset: 0;
-  z-index: 7;
-  background: linear-gradient(155deg, #fffdf6, #e9dfcb);
-  clip-path: polygon(0 0, 100% 0, 50% 64%);
-  transform-origin: top center;
-  transition: transform .9s ease, opacity .6s ease;
-  filter: drop-shadow(0 2px 2px rgba(75,65,45,.08));
-}
-
-/* SPAGO NATURALE */
-
-.twine-vertical {
-  position: absolute;
-  z-index: 8;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  transform: translateX(-50%);
-  background: #b6a17b;
-  box-shadow: 1px 0 rgba(255,255,255,.65);
-}
-
-.twine-horizontal {
-  position: absolute;
-  z-index: 8;
-  top: 50%;
-  left: 0;
+.cover-button img {
+  display: block;
   width: 100%;
-  height: 2px;
-  background: #b6a17b;
-  box-shadow: 0 1px rgba(255,255,255,.65);
+  height: auto;
+  border: 0;
+  border-radius: 3px;
+  box-shadow: 0 12px 32px rgba(70, 58, 38, .10);
 }
 
-.knot {
-  position: absolute;
-  z-index: 10;
-  top: 50%;
-  left: 50%;
-  width: 24px;
-  height: 21px;
-  border: 1px solid #a58e68;
-  border-radius: 50%;
-  background: #c6b18a;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 2px 4px rgba(70,55,30,.13);
+.cover-button:focus-visible {
+  outline: 2px solid var(--olive-soft);
+  outline-offset: 4px;
 }
 
-.knot::before,
-.knot::after {
-  content: "";
-  position: absolute;
-  top: 3px;
-  width: 12px;
-  height: 12px;
-  border: 1px solid #a58e68;
-  border-radius: 70% 30% 65% 35%;
-  background: #d2bf9b;
-}
-
-.knot::before {
-  left: -8px;
-  transform: rotate(25deg);
-}
-
-.knot::after {
-  right: -8px;
-  transform: rotate(65deg);
-}
-
-/* RAMETTO D'ULIVO */
-
-.olive-sprig {
-  position: absolute;
-  z-index: 11;
-  top: calc(50% + 5px);
-  left: calc(50% + 11px);
-  width: 92px;
-  height: 53px;
-  transform: rotate(-24deg);
-  transform-origin: left center;
-  pointer-events: none;
-  transition: opacity .4s ease;
-}
-
-.open-label {
-  position: absolute;
-  z-index: 12;
-  right: 0;
-  bottom: 9px;
-  left: 0;
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: #76765d;
-  transition: opacity .3s ease;
-}
-
-.instruction {
-  margin: 23px 0 0;
-  font-size: 13px;
-  line-height: 1.7;
-  color: #777963;
-}
-
-/* APERTURA DELLA BUSTA */
-
-.envelope-scene.opened .flap {
-  transform: rotateX(180deg);
+.cover-scene.opened {
   opacity: 0;
-}
-
-.envelope-scene.opened .twine-vertical,
-.envelope-scene.opened .twine-horizontal,
-.envelope-scene.opened .knot,
-.envelope-scene.opened .olive-sprig,
-.envelope-scene.opened .open-label {
-  opacity: 0;
-}
-
-.envelope-scene.opened .envelope {
+  max-height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
   pointer-events: none;
 }
 
-.envelope:focus-visible {
-  outline: 2px solid #788367;
-  outline-offset: 5px;
-}
-
-/* CONTENUTO DELLA PARTECIPAZIONE */
+/* PARTECIPAZIONE E CONTENUTO */
 
 .invitation {
   max-height: 0;
@@ -260,103 +99,158 @@ h1 {
   overflow: hidden;
   transform: translateY(18px);
   transition:
-    max-height 1.2s ease,
-    opacity .8s ease,
-    transform .8s ease;
+    max-height 1.5s ease,
+    opacity 1s ease,
+    transform 1s ease;
 }
 
 .invitation.visible {
-  max-height: 6000px;
+  max-height: 10000px;
   opacity: 1;
   transform: translateY(0);
 }
 
-.video {
-  width: 100%;
-  margin: 10px auto 20px;
-}
-
-.video img {
+.invitation-image {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 15px;
+  margin: 0 auto 24px;
+  border-radius: 3px;
+  box-shadow: 0 8px 24px rgba(70, 58, 38, .08);
 }
 
+/* SEZIONI INFORMATIVE */
+
 .card {
-  background: white;
+  margin: 20px 0;
   padding: 25px 20px;
-  margin-top: 25px;
-  border-radius: 18px;
+  background: var(--paper);
+  border: 1px solid #eee7d9;
+  border-radius: 12px;
+  box-shadow: 0 5px 18px rgba(70, 58, 38, .035);
+}
+
+.card-title {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.45;
 }
 
 .card p {
-  line-height: 1.6;
+  margin: 10px 0;
+  line-height: 1.75;
+  font-size: 16px;
 }
+
+.olive-divider {
+  width: 46px;
+  height: 1px;
+  margin: 18px auto;
+  background: #b6b79d;
+}
+
+/* PULSANTI */
 
 .button {
   display: block;
   width: 100%;
-  padding: 15px;
+  padding: 15px 12px;
   margin-top: 15px;
-  border-radius: 30px;
+  border: 0;
+  border-radius: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 1.4;
   text-decoration: none;
-  border: none;
-  font-family: Georgia, serif;
-  font-size: 16px;
   cursor: pointer;
+  transition: filter .2s ease, transform .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button:active {
+  transform: scale(.985);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--olive-soft);
+  outline-offset: 3px;
 }
 
 .location {
-  background: #f1ead5;
-  color: #30382f;
+  background: #e9e5d3;
+  color: var(--text);
 }
 
 .confirm {
-  background: #303f31;
-  color: white;
+  background: var(--olive);
+  color: #fffdf7;
 }
 
 .copy {
-  background: #e8dcae;
-  color: #30382f;
+  background: #e9dfc8;
+  color: var(--text);
 }
 
+/* IBAN */
+
 #iban {
-  font-family: monospace;
+  margin: 18px 0 12px;
+  padding: 15px 10px;
+  border-radius: 8px;
+  background: #f3eee2;
+  color: #514a39;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 1.8;
   overflow-wrap: anywhere;
-  margin: 15px 0;
   user-select: all;
+  -webkit-user-select: all;
 }
 
 #messaggio {
-  margin-top: 12px;
+  min-height: 20px;
+  margin-top: 10px;
+  color: var(--olive);
   font-size: 14px;
-  min-height: 18px;
+  line-height: 1.5;
 }
 
 .thank-you {
-  margin-top: 30px;
-  line-height: 1.8;
+  margin: 30px 8px 12px;
+  color: #676e53;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.9;
+}
+
+.heart {
+  display: block;
+  margin-top: 8px;
+  font-size: 22px;
+  color: var(--olive);
 }
 
 @media (max-width: 380px) {
   .container {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: 12px 13px 32px;
   }
 
-  h1 {
-    font-size: 27px;
+  .card {
+    padding: 22px 16px;
+  }
+
+  .card-title {
+    font-size: 19px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flap,
-  .invitation,
-  .olive-sprig,
-  .open-label {
-    transition: none !important;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
   }
 }
 </style>
@@ -365,86 +259,39 @@ h1 {
 <body>
 <div class="container">
 
-  <header>
-    <h1>Roberta &amp; Christian</h1>
-    <div class="subtitle">10 LUGLIO 2027</div>
-  </header>
-
-  <div class="envelope-scene" id="envelopeScene">
-
+  <!-- COPERTINA REALISTICA -->
+  <section class="cover-scene" id="coverScene">
     <button
-      class="envelope"
+      class="cover-button"
       id="openEnvelope"
       type="button"
       aria-label="Apri la partecipazione di Roberta e Christian"
+      aria-controls="invitation"
       aria-expanded="false">
 
-      <div class="paper">
-        <div class="front-fold"></div>
-        <div class="left-fold"></div>
-        <div class="right-fold"></div>
-        <div class="bottom-fold"></div>
-      </div>
-
-      <div class="flap"></div>
-
-      <div class="twine-vertical"></div>
-      <div class="twine-horizontal"></div>
-      <div class="knot"></div>
-
-      <svg
-        class="olive-sprig"
-        viewBox="0 0 120 70"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true">
-
-        <path
-          d="M5 62 Q45 37 108 8"
-          fill="none"
-          stroke="#777c55"
-          stroke-width="1.8"
-          stroke-linecap="round"/>
-
-        <g fill="#7d8760" stroke="#68764f" stroke-width=".5">
-          <ellipse cx="25" cy="48" rx="12" ry="4"
-            transform="rotate(-45 25 48)"/>
-          <ellipse cx="38" cy="48" rx="12" ry="4"
-            transform="rotate(20 38 48)"/>
-          <ellipse cx="45" cy="36" rx="12" ry="4"
-            transform="rotate(-45 45 36)"/>
-          <ellipse cx="57" cy="37" rx="12" ry="4"
-            transform="rotate(20 57 37)"/>
-          <ellipse cx="66" cy="25" rx="12" ry="4"
-            transform="rotate(-45 66 25)"/>
-          <ellipse cx="78" cy="25" rx="12" ry="4"
-            transform="rotate(20 78 25)"/>
-          <ellipse cx="88" cy="15" rx="10" ry="3.5"
-            transform="rotate(-45 88 15)"/>
-        </g>
-      </svg>
-
-      <span class="open-label">TOCCA PER APRIRE</span>
+      <img
+        src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png"
+        alt="Roberta e Christian, 10 luglio 2027. Busta realistica in carta cotone con spago naturale e rametto d'ulivo. Tocca per aprire."
+        fetchpriority="high">
     </button>
+  </section>
 
-    <p class="instruction" id="instruction">
-      Un invito speciale, per un giorno speciale
-    </p>
-  </div>
-
+  <!-- CONTENUTO DELLA PARTECIPAZIONE -->
   <main class="invitation" id="invitation" inert>
 
-    <div class="video">
-      <img
-        src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/D98E7FC4-ED3B-4340-85BE-FB7B3311C11B.png"
-        alt="Partecipazione di Roberta e Christian">
-    </div>
+    <img
+      class="invitation-image"
+      src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/D98E7FC4-ED3B-4340-85BE-FB7B3311C11B.png"
+      alt="Partecipazione ad acquerello di Roberta e Christian">
 
-    <div class="card">
-      <p><strong>La cerimonia e il ricevimento</strong></p>
+    <!-- LOCATION -->
+    <section class="card">
+      <h2 class="card-title">La cerimonia e il ricevimento</h2>
 
       <p>
         Casa La Carrubbazza<br>
-        San Gregorio di Catania
+        Via Raffaello Sanzio, 38<br>
+        San Gregorio di Catania (CT)
       </p>
 
       <a
@@ -454,13 +301,17 @@ h1 {
         rel="noopener noreferrer">
         📍 COME RAGGIUNGERCI
       </a>
-    </div>
+    </section>
 
-    <div class="card">
+    <!-- CONFERMA PRESENZA -->
+    <section class="card">
+      <h2 class="card-title">Saremo felici di festeggiare con voi</h2>
+
+      <div class="olive-divider"></div>
+
       <p>
-        <strong>
-          È gradita gentile conferma entro il 31 Maggio 2027
-        </strong>
+        È gradita gentile conferma<br>
+        entro il 31 Maggio 2027
       </p>
 
       <a
@@ -470,72 +321,88 @@ h1 {
         rel="noopener noreferrer">
         🤍 CONFERMA LA TUA PRESENZA
       </a>
-    </div>
+    </section>
 
-    <div class="card">
-      <p><strong>Un pensiero per noi</strong></p>
+    <!-- IBAN -->
+    <section class="card">
+      <h2 class="card-title">Un pensiero per noi</h2>
 
       <p>
-        Se desiderate accompagnarci in questo nuovo capitolo:
+        Se desiderate accompagnarci<br>
+        in questo nuovo capitolo:
       </p>
 
       <div id="iban">IT88Q0200816938000011001971</div>
+
+      <p>Christian Di Gaudio</p>
 
       <button class="button copy" id="copyButton" type="button">
         📋 COPIA IBAN
       </button>
 
       <div id="messaggio" aria-live="polite"></div>
-    </div>
+    </section>
 
-    <p style="margin-top:30px;">
+    <!-- MESSAGGIO FINALE -->
+    <footer class="thank-you">
       Grazie di cuore per condividere con noi<br>
-      la nostra Dolce Vita. 🥂
-    </p>
+      la nostra Dolce Vita.
+      <span class="heart" aria-hidden="true">♡</span>
+    </footer>
 
   </main>
 </div>
 
 <script>
-const scene = document.getElementById("envelopeScene");
-const openButton = document.getElementById("openEnvelope");
-const invitation = document.getElementById("invitation");
-const instruction = document.getElementById("instruction");
+(function () {
+  const coverScene = document.getElementById("coverScene");
+  const openButton = document.getElementById("openEnvelope");
+  const invitation = document.getElementById("invitation");
+  const copyButton = document.getElementById("copyButton");
+  const message = document.getElementById("messaggio");
 
-openButton.addEventListener("click", function () {
-  scene.classList.add("opened");
-  openButton.setAttribute("aria-expanded", "true");
-  instruction.style.opacity = "0";
+  let isOpening = false;
 
-  window.setTimeout(function () {
-    invitation.classList.add("visible");
-    invitation.inert = false;
+  openButton.addEventListener("click", function () {
+    if (isOpening) return;
+    isOpening = true;
+
+    openButton.setAttribute("aria-expanded", "true");
+    coverScene.classList.add("opened");
 
     window.setTimeout(function () {
-      invitation.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }, 200);
-  }, 550);
-});
+      invitation.inert = false;
+      invitation.classList.add("visible");
 
-document.getElementById("copyButton").addEventListener(
-  "click",
-  async function () {
-    const iban = document.getElementById("iban").innerText.trim();
-    const message = document.getElementById("messaggio");
+      window.setTimeout(function () {
+        invitation.scrollIntoView({
+          behavior: window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches ? "auto" : "smooth",
+          block: "start"
+        });
+      }, 250);
+    }, 450);
+  });
+
+  copyButton.addEventListener("click", async function () {
+    const iban = document.getElementById("iban").textContent.trim();
 
     try {
-      await navigator.clipboard.writeText(iban);
-      message.innerText = "✓ IBAN copiato!";
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(iban);
+        message.textContent = "✓ IBAN copiato!";
+      } else {
+        throw new Error("Clipboard non disponibile");
+      }
     } catch (error) {
-      message.innerText =
-        "Non è stato possibile copiarlo automaticamente. Seleziona l'IBAN e copialo manualmente.";
+      message.textContent =
+        "Tieni premuto sull'IBAN qui sopra per selezionarlo e copiarlo.";
     }
-  }
-);
+  });
+})();
 </script>
-
 </body>
 </html>
+
+
