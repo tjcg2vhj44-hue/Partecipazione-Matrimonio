@@ -9,12 +9,14 @@
 
   <meta name="description" content="La nostra partecipazione di matrimonio. Tocca per aprire e scoprire tutti i dettagli.">
 
-  <!-- ANTEPRIMA WHATSAPP E SOCIAL: NON È VISIBILE NELLA PAGINA -->
+  <!-- ANTEPRIMA WHATSAPP E SOCIAL: NON VISIBILE NELLA PAGINA -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Roberta &amp; Christian">
   <meta property="og:url" content="https://tjcg2vhj44-hue.github.io/Partecipazione-Matrimonio/">
   <meta property="og:title" content="Roberta &amp; Christian — 10 Luglio 2027">
   <meta property="og:description" content="La nostra partecipazione di matrimonio. Tocca per aprire e scoprire tutti i dettagli.">
+
+  <!-- IMMAGINE ORIZZONTALE SOLO PER L'ANTEPRIMA SOCIAL -->
   <meta property="og:image" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
   <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
   <meta property="og:image:alt" content="Busta della partecipazione di Roberta e Christian">
@@ -289,7 +291,7 @@
 <body>
   <div class="page">
 
-    <!-- BUSTA CHIUSA: UNA SOLA IMMAGINE, SENZA TESTO DUPLICATO -->
+    <!-- BUSTA INIZIALE VERTICALE ORIGINALE -->
     <section class="envelope-area" id="envelopeArea">
       <button
         class="envelope-button"
@@ -298,14 +300,14 @@
         aria-label="Apri la partecipazione di Roberta e Christian"
       >
         <img
-          src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png"
+          src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png"
           alt="Busta chiusa della partecipazione di Roberta e Christian"
           fetchpriority="high"
         >
       </button>
     </section>
 
-    <!-- MUSICA: PARTE AL TOCCO DELLA BUSTA -->
+    <!-- MUSICA DI SOTTOFONDO -->
     <audio id="weddingMusic" loop preload="auto" playsinline>
       <source
         src="hitslab-wedding-wedding-anniversary-music-282316.mp3"
@@ -313,7 +315,7 @@
       >
     </audio>
 
-    <!-- PARTECIPAZIONE COMPLETA -->
+    <!-- DETTAGLI DELLA PARTECIPAZIONE -->
     <main class="invitation" id="invitation" inert>
 
       <img
@@ -400,13 +402,13 @@
     // Volume concordato: 0.05 = 5%
     music.volume = 0.05;
 
-    // Al tocco, avvia la musica e mostra la partecipazione
+    // Apertura della busta e avvio della musica al tocco
     openEnvelope.addEventListener("click", function () {
       if (isOpening) return;
       isOpening = true;
 
       music.play().catch(function () {
-        // La pagina si apre anche se il browser blocca l'audio.
+        // La partecipazione si apre anche se il browser blocca l'audio.
       });
 
       envelopeArea.classList.add("opening");
