@@ -15,6 +15,7 @@
   --olive: #414c34;
   --olive-soft: #777d66;
   --text: #30382f;
+  --brown: #806448;
 }
 
 * {
@@ -35,6 +36,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* CONTENITORE PRINCIPALE */
+
 .container {
   width: 100%;
   max-width: 520px;
@@ -43,138 +46,64 @@ body {
 }
 
 /* ---------------------------------
-   BUSTA E ANIMAZIONE
+   SCHERMATA INIZIALE: BUSTA CHIUSA
 ---------------------------------- */
 
 .cover-scene {
-  position: relative;
   width: 100%;
   max-width: 440px;
-  margin: 0 auto 28px;
-  overflow: visible;
+  margin: 12px auto 20px;
   opacity: 1;
-  transition:
-    opacity .7s ease,
-    max-height .8s ease,
-    margin .8s ease;
-}
-
-.cover-button {
-  position: relative;
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  overflow: visible;
-  border-radius: 3px;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.cover-button img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 0;
+  transition: opacity .55s ease, transform .55s ease;
 }
 
 .closed-cover {
-  position: relative;
-  z-index: 2;
-  opacity: 1;
-  transform: scale(1);
-  box-shadow: 0 12px 32px rgba(70, 58, 38, .10);
-  transition:
-    opacity .65s ease,
-    transform .9s ease;
-}
-
-.open-cover {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100% !important;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(.98);
-  transition:
-    opacity .8s ease,
-    transform 1s ease;
-}
-
-/* Partecipazione che esce dalla busta */
-
-.emerging-card {
-  position: absolute;
-  z-index: 3;
-  left: 12%;
-  top: 25%;
-  width: 76%;
   height: auto;
-  opacity: 0;
-  pointer-events: none;
-  box-shadow: 0 12px 32px rgba(70, 58, 38, .15);
-  transform: translateY(22px) scale(.96);
-  transform-origin: center center;
-  transition:
-    opacity .55s ease,
-    transform 1.15s cubic-bezier(.2,.7,.2,1),
-    width 1.25s cubic-bezier(.2,.7,.2,1),
-    left 1.25s cubic-bezier(.2,.7,.2,1),
-    top 1.25s cubic-bezier(.2,.7,.2,1);
+  border: 0;
+  border-radius: 3px;
+  box-shadow: 0 12px 32px rgba(70, 58, 38, .10);
 }
-
-/* Fase 1: si apre la busta */
-
-.cover-scene.opening .closed-cover {
-  opacity: 0;
-  transform: scale(1.025);
-}
-
-.cover-scene.opening .open-cover {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Fase 2: il cartoncino fuoriesce */
-
-.cover-scene.card-emerging .emerging-card {
-  opacity: 1;
-  transform: translateY(-12px) scale(1);
-}
-
-/* Fase 3: il cartoncino si ingrandisce */
-
-.cover-scene.card-expanding .emerging-card {
-  left: 0;
-  top: 0;
-  width: 100%;
-  transform: translateY(0) scale(1);
-}
-
-.cover-scene.card-expanding .closed-cover,
-.cover-scene.card-expanding .open-cover {
-  opacity: 0;
-  transition: opacity .6s ease;
-}
-
-/* La scena iniziale scompare dopo l'animazione */
 
 .cover-scene.dismissed {
   opacity: 0;
-  max-height: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  overflow: hidden;
+  transform: translateY(-6px);
   pointer-events: none;
 }
 
-.cover-button:focus-visible {
+/* PULSANTE TOCCA PER APRIRE */
+
+.open-label {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 28px;
+  padding: 14px 30px;
+  border: 1px solid #806448;
+  border-radius: 40px;
+  background: var(--brown);
+  color: #fffdf7;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .35s ease, transform .2s ease;
+}
+
+.open-label:active {
+  transform: scale(.98);
+}
+
+.open-label:focus-visible {
   outline: 2px solid var(--olive-soft);
   outline-offset: 4px;
+}
+
+.open-label.fading {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ---------------------------------
@@ -182,20 +111,27 @@ body {
 ---------------------------------- */
 
 .invitation {
-  max-height: 0;
+  display: none;
+  width: 100%;
   opacity: 0;
-  overflow: hidden;
-  transform: translateY(18px);
-  transition:
-    max-height 1.3s ease,
-    opacity .9s ease,
-    transform .9s ease;
+  transform: translateY(8px);
 }
 
 .invitation.visible {
-  max-height: 12000px;
-  opacity: 1;
-  transform: translateY(0);
+  display: block;
+  animation: invitationReveal .7s ease forwards;
+}
+
+@keyframes invitationReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .invitation-image {
@@ -241,7 +177,7 @@ body {
 }
 
 /* ---------------------------------
-   PULSANTI
+   PULSANTI INFORMATIVI
 ---------------------------------- */
 
 .button {
@@ -341,6 +277,11 @@ body {
   .card-title {
     font-size: 19px;
   }
+
+  .open-label {
+    font-size: 13px;
+    padding: 13px 26px;
+  }
 }
 
 /* ACCESSIBILITÀ */
@@ -350,6 +291,7 @@ body {
   *::before,
   *::after {
     scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
     transition-duration: .01ms !important;
   }
 }
@@ -359,43 +301,25 @@ body {
 <body>
 <div class="container">
 
-  <!-- BUSTA INIZIALE -->
+  <!-- SCHERMATA INIZIALE: BUSTA CHIUSA -->
 
   <section class="cover-scene" id="coverScene">
-    <button
-      class="cover-button"
-      id="openEnvelope"
-      type="button"
-      aria-label="Apri la partecipazione di Roberta e Christian"
-      aria-controls="invitation"
-      aria-expanded="false">
-
-      <!-- Busta chiusa originale -->
-
-      <img
-        class="closed-cover"
-        src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png"
-        alt="Busta chiusa della partecipazione di Roberta e Christian"
-        fetchpriority="high">
-
-      <!-- Busta aperta originale -->
-
-      <img
-        class="open-cover"
-        src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/2B8E1E39-620A-404C-AC9B-7F899BA84BA5.png"
-        alt=""
-        aria-hidden="true">
-
-      <!-- Cartoncino originale che fuoriesce -->
-
-      <img
-        class="emerging-card"
-        src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/D98E7FC4-ED3B-4340-85BE-FB7B3311C11B.png"
-        alt=""
-        aria-hidden="true">
-
-    </button>
+    <img
+      class="closed-cover"
+      src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png"
+      alt="Busta chiusa della partecipazione di Roberta e Christian"
+      fetchpriority="high">
   </section>
+
+  <!-- PULSANTE DI APERTURA -->
+
+  <button
+    class="open-label"
+    id="openEnvelope"
+    type="button"
+    aria-controls="invitation">
+    TOCCA PER APRIRE
+  </button>
 
   <!-- PARTECIPAZIONE E DETTAGLI -->
 
@@ -489,48 +413,32 @@ body {
 
   let isOpening = false;
 
+  // APERTURA DELLA PARTECIPAZIONE
+
   openButton.addEventListener("click", function () {
     if (isOpening) return;
     isOpening = true;
 
-    openButton.setAttribute("aria-expanded", "true");
+    openButton.disabled = true;
+    openButton.classList.add("fading");
+    coverScene.classList.add("dismissed");
 
-    // 1. La busta chiusa lascia spazio alla busta aperta.
-
-    coverScene.classList.add("opening");
-
-    // 2. Il cartoncino comincia a uscire.
-
-    window.setTimeout(function () {
-      coverScene.classList.add("card-emerging");
-    }, 900);
-
-    // 3. Il cartoncino si ingrandisce.
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
     window.setTimeout(function () {
-      coverScene.classList.add("card-expanding");
-    }, 2200);
+      coverScene.style.display = "none";
+      openButton.style.display = "none";
 
-    // 4. La partecipazione completa diventa visibile.
-
-    window.setTimeout(function () {
       invitation.inert = false;
       invitation.classList.add("visible");
 
-      coverScene.classList.add("dismissed");
-
-      // Porta l'invito completo in primo piano sul telefono.
-
-      window.setTimeout(function () {
-        invitation.scrollIntoView({
-          behavior: window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-          ).matches ? "auto" : "smooth",
-          block: "start"
-        });
-      }, 250);
-
-    }, 3500);
+      window.scrollTo({
+        top: 0,
+        behavior: reducedMotion ? "auto" : "smooth"
+      });
+    }, reducedMotion ? 10 : 450);
   });
 
   // COPIA IBAN
