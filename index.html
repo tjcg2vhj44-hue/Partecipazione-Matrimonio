@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -217,28 +218,6 @@ body {
   color: var(--olive);
 }
 
-/* CONTROLLO MUSICA */
-.music-control {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 0 auto 18px;
-  padding: 10px 16px;
-  border: 1px solid #e5ddce;
-  border-radius: 24px;
-  background: #fffdf8;
-  color: #5d604e;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.music-control:focus-visible {
-  outline: 2px solid var(--olive-soft);
-  outline-offset: 3px;
-}
-
 @media (max-width: 380px) {
   .container { padding: 12px 13px 32px; }
   .card { padding: 22px 16px; }
@@ -274,14 +253,10 @@ body {
       fetchpriority="high">
   </button>
 
-  <!-- AUDIO: VOLUME MOLTO BASSO -->
-  <audio id="weddingMusic" loop preload="none">
+  <!-- MUSICA DI SOTTOFONDO -->
+  <audio id="weddingMusic" loop preload="auto">
     <source src="hitslab-wedding-wedding-anniversary-music-282316.mp3" type="audio/mpeg">
   </audio>
-
-  <button class="music-control" id="musicButton" type="button" aria-pressed="false">
-    ♫ Attiva la musica
-  </button>
 
   <!-- PARTECIPAZIONE COMPLETA -->
   <main class="invitation" id="invitation" inert>
@@ -348,14 +323,23 @@ body {
   const copyButton = document.getElementById("copyButton");
   const message = document.getElementById("messaggio");
   const music = document.getElementById("weddingMusic");
-  const musicButton = document.getElementById("musicButton");
 
   let isOpening = false;
 
-  // APERTURA DELLA PARTECIPAZIONE
+  // VOLUME BASSO
+  music.volume = 0.05;
+
+  // APERTURA DELLA PARTECIPAZIONE E AVVIO MUSICA
   coverScene.addEventListener("click", function () {
     if (isOpening) return;
     isOpening = true;
+
+    // Il tocco sulla busta consente al browser di tentare
+    // la riproduzione audio senza un secondo pulsante.
+    music.play().catch(function () {
+      // Alcuni browser possono bloccare la riproduzione.
+      // In quel caso l'apertura della partecipazione funziona comunque.
+    });
 
     coverScene.disabled = true;
     coverScene.classList.add("dismissed");
@@ -374,25 +358,6 @@ body {
         behavior: reducedMotion ? "auto" : "smooth"
       });
     }, reducedMotion ? 10 : 450);
-  });
-
-  // MUSICA: AVVIO SOLO DOPO UN TOCCO DELL'UTENTE
-  music.volume = 0.08;
-
-  musicButton.addEventListener("click", async function () {
-    if (music.paused) {
-      try {
-        await music.play();
-        musicButton.textContent = "♫ Metti in pausa la musica";
-        musicButton.setAttribute("aria-pressed", "true");
-      } catch (error) {
-        musicButton.textContent = "Impossibile avviare la musica";
-      }
-    } else {
-      music.pause();
-      musicButton.textContent = "♫ Attiva la musica";
-      musicButton.setAttribute("aria-pressed", "false");
-    }
   });
 
   // COPIA IBAN
