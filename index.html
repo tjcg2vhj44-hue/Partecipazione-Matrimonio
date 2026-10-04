@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -18,9 +17,7 @@
   --brown: #806448;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
@@ -43,9 +40,7 @@ body {
   padding: 18px 18px 42px;
 }
 
-/* ---------------------------------
-   BUSTA INIZIALE CLICCABILE
----------------------------------- */
+/* BUSTA INIZIALE */
 
 .cover-scene {
   display: block;
@@ -83,13 +78,9 @@ body {
   pointer-events: none;
 }
 
-.cover-scene:disabled {
-  cursor: default;
-}
+.cover-scene:disabled { cursor: default; }
 
-/* ---------------------------------
-   PARTECIPAZIONE COMPLETA
----------------------------------- */
+/* PARTECIPAZIONE */
 
 .invitation {
   display: none;
@@ -104,15 +95,8 @@ body {
 }
 
 @keyframes invitationReveal {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .invitation-image {
@@ -124,9 +108,7 @@ body {
   box-shadow: 0 8px 24px rgba(70, 58, 38, .08);
 }
 
-/* ---------------------------------
-   SEZIONI INFORMATIVE
----------------------------------- */
+/* SEZIONI INFORMATIVE */
 
 .card {
   margin: 20px 0;
@@ -157,9 +139,7 @@ body {
   background: #b6b79d;
 }
 
-/* ---------------------------------
-   PULSANTI INFORMATIVI
----------------------------------- */
+/* PULSANTI */
 
 .button {
   display: block;
@@ -177,33 +157,18 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-.button:active {
-  transform: scale(.985);
-}
+.button:active { transform: scale(.985); }
 
 .button:focus-visible {
   outline: 2px solid var(--olive-soft);
   outline-offset: 3px;
 }
 
-.location {
-  background: #e9e5d3;
-  color: var(--text);
-}
+.location { background: #e9e5d3; color: var(--text); }
+.confirm { background: var(--olive); color: #fffdf7; }
+.copy { background: #e9dfc8; color: var(--text); }
 
-.confirm {
-  background: var(--olive);
-  color: #fffdf7;
-}
-
-.copy {
-  background: #e9dfc8;
-  color: var(--text);
-}
-
-/* ---------------------------------
-   IBAN
----------------------------------- */
+/* IBAN */
 
 #iban {
   margin: 18px 0 12px;
@@ -242,30 +207,18 @@ body {
   color: var(--olive);
 }
 
-/* ---------------------------------
-   SCHERMI PICCOLI
----------------------------------- */
+/* SCHERMI PICCOLI */
 
 @media (max-width: 380px) {
-  .container {
-    padding: 12px 13px 32px;
-  }
-
-  .card {
-    padding: 22px 16px;
-  }
-
-  .card-title {
-    font-size: 19px;
-  }
+  .container { padding: 12px 13px 32px; }
+  .card { padding: 22px 16px; }
+  .card-title { font-size: 19px; }
 }
 
 /* ACCESSIBILITÀ */
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto !important;
-  }
+  html { scroll-behavior: auto !important; }
 
   .cover-scene,
   .invitation.visible {
@@ -284,7 +237,16 @@ body {
 <body>
 <div class="container">
 
-  <!-- BUSTA INIZIALE: SI TOCCA DIRETTAMENTE L'IMMAGINE -->
+  <!-- MUSICA DI SOTTOFONDO -->
+  <audio
+    id="weddingMusic"
+    src="hitslab-wedding-wedding-anniversary-music-282316.mp3"
+    preload="auto"
+    loop
+    playsinline>
+  </audio>
+
+  <!-- BUSTA INIZIALE -->
 
   <button
     class="cover-scene"
@@ -389,14 +351,27 @@ body {
   const invitation = document.getElementById("invitation");
   const copyButton = document.getElementById("copyButton");
   const message = document.getElementById("messaggio");
+  const music = document.getElementById("weddingMusic");
 
   let isOpening = false;
 
-  // APERTURA DELLA PARTECIPAZIONE
+  // APERTURA DELLA PARTECIPAZIONE E AVVIO MUSICA
 
   coverScene.addEventListener("click", function () {
     if (isOpening) return;
     isOpening = true;
+
+    // Avvia la musica direttamente dal tocco dell'utente.
+    // Il volume basso mantiene il brano come sottofondo.
+    music.volume = 0.15;
+
+    const playPromise = music.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(function (error) {
+        console.warn("La riproduzione della musica non è riuscita:", error);
+      });
+    }
 
     coverScene.disabled = true;
     coverScene.classList.add("dismissed");
