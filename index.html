@@ -16,20 +16,19 @@
   <meta property="og:url" content="https://tjcg2vhj44-hue.github.io/Partecipazione-Matrimonio/">
   <meta property="og:title" content="Roberta &amp; Christian — 10 Luglio 2027">
   <meta property="og:description" content="La nostra partecipazione di matrimonio. Tocca per aprire e scoprire tutti i dettagli.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png">
-  <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png">
-  <meta property="og:image:alt" content="La busta della partecipazione di Roberta e Christian">
+  <meta property="og:image" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
+  <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
+  <meta property="og:image:alt" content="Busta della partecipazione di Roberta e Christian">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Roberta &amp; Christian — 10 Luglio 2027">
   <meta name="twitter:description" content="La nostra partecipazione di matrimonio. Tocca per aprire e scoprire tutti i dettagli.">
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
 
   <style>
     :root {
       --panna: #fbf9f3;
       --marrone: #765a43;
       --marrone-scuro: #594331;
-      --verde: #667454;
       --bordo: #e8dfd2;
     }
 
@@ -273,7 +272,7 @@
       <p class="tap-text">Tocca per aprire</p>
     </section>
 
-    <!-- MUSICA DI SOTTOFONDO -->
+    <!-- MUSICA -->
     <audio id="weddingMusic" loop preload="auto" playsinline>
       <source
         src="hitslab-wedding-wedding-anniversary-music-282316.mp3"
@@ -364,14 +363,13 @@
     // Volume concordato: 0.05 = 5%
     music.volume = 0.05;
 
-    // Apri la busta e prova ad avviare la musica
+    // Apertura della busta e avvio della musica
     openEnvelope.addEventListener("click", function () {
       if (isOpening) return;
       isOpening = true;
 
-      // La riproduzione viene tentata direttamente al tocco dell'utente.
       music.play().catch(function () {
-        // Alcuni browser possono bloccare la riproduzione.
+        // Il browser potrebbe bloccare la riproduzione.
       });
 
       envelopeArea.classList.add("opening");
