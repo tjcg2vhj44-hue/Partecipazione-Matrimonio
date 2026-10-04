@@ -36,8 +36,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* CONTENITORE PRINCIPALE */
-
 .container {
   width: 100%;
   max-width: 520px;
@@ -46,15 +44,23 @@ body {
 }
 
 /* ---------------------------------
-   SCHERMATA INIZIALE: BUSTA CHIUSA
+   BUSTA INIZIALE CLICCABILE
 ---------------------------------- */
 
 .cover-scene {
+  display: block;
+  position: relative;
   width: 100%;
   max-width: 440px;
-  margin: 12px auto 20px;
+  margin: 12px auto 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
   opacity: 1;
+  transform: translateY(0);
   transition: opacity .55s ease, transform .55s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .closed-cover {
@@ -66,44 +72,19 @@ body {
   box-shadow: 0 12px 32px rgba(70, 58, 38, .10);
 }
 
+.cover-scene:focus-visible {
+  outline: 2px solid var(--olive-soft);
+  outline-offset: 4px;
+}
+
 .cover-scene.dismissed {
   opacity: 0;
   transform: translateY(-6px);
   pointer-events: none;
 }
 
-/* PULSANTE TOCCA PER APRIRE */
-
-.open-label {
-  display: block;
-  width: fit-content;
-  margin: 0 auto 28px;
-  padding: 14px 30px;
-  border: 1px solid #806448;
-  border-radius: 40px;
-  background: var(--brown);
-  color: #fffdf7;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 14px;
-  font-weight: normal;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: opacity .35s ease, transform .2s ease;
-}
-
-.open-label:active {
-  transform: scale(.98);
-}
-
-.open-label:focus-visible {
-  outline: 2px solid var(--olive-soft);
-  outline-offset: 4px;
-}
-
-.open-label.fading {
-  opacity: 0;
-  pointer-events: none;
+.cover-scene:disabled {
+  cursor: default;
 }
 
 /* ---------------------------------
@@ -277,22 +258,24 @@ body {
   .card-title {
     font-size: 19px;
   }
-
-  .open-label {
-    font-size: 13px;
-    padding: 13px 26px;
-  }
 }
 
 /* ACCESSIBILITÀ */
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  html {
     scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
+  }
+
+  .cover-scene,
+  .invitation.visible {
+    animation: none !important;
     transition-duration: .01ms !important;
+  }
+
+  .invitation.visible {
+    opacity: 1;
+    transform: none;
   }
 }
 </style>
@@ -301,24 +284,21 @@ body {
 <body>
 <div class="container">
 
-  <!-- SCHERMATA INIZIALE: BUSTA CHIUSA -->
+  <!-- BUSTA INIZIALE: SI TOCCA DIRETTAMENTE L'IMMAGINE -->
 
-  <section class="cover-scene" id="coverScene">
+  <button
+    class="cover-scene"
+    id="openEnvelope"
+    type="button"
+    aria-label="Apri la partecipazione di Roberta e Christian"
+    aria-controls="invitation">
+
     <img
       class="closed-cover"
       src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png"
-      alt="Busta chiusa della partecipazione di Roberta e Christian"
+      alt="Partecipazione di Roberta e Christian con busta chiusa. Tocca per aprire."
       fetchpriority="high">
-  </section>
 
-  <!-- PULSANTE DI APERTURA -->
-
-  <button
-    class="open-label"
-    id="openEnvelope"
-    type="button"
-    aria-controls="invitation">
-    TOCCA PER APRIRE
   </button>
 
   <!-- PARTECIPAZIONE E DETTAGLI -->
@@ -405,8 +385,7 @@ body {
 
 <script>
 (function () {
-  const coverScene = document.getElementById("coverScene");
-  const openButton = document.getElementById("openEnvelope");
+  const coverScene = document.getElementById("openEnvelope");
   const invitation = document.getElementById("invitation");
   const copyButton = document.getElementById("copyButton");
   const message = document.getElementById("messaggio");
@@ -415,12 +394,11 @@ body {
 
   // APERTURA DELLA PARTECIPAZIONE
 
-  openButton.addEventListener("click", function () {
+  coverScene.addEventListener("click", function () {
     if (isOpening) return;
     isOpening = true;
 
-    openButton.disabled = true;
-    openButton.classList.add("fading");
+    coverScene.disabled = true;
     coverScene.classList.add("dismissed");
 
     const reducedMotion = window.matchMedia(
@@ -429,7 +407,6 @@ body {
 
     window.setTimeout(function () {
       coverScene.style.display = "none";
-      openButton.style.display = "none";
 
       invitation.inert = false;
       invitation.classList.add("visible");
