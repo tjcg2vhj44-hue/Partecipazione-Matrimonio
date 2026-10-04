@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -6,22 +7,18 @@
   <meta name="theme-color" content="#fbf9f3">
 
   <title>Roberta &amp; Christian — 10 Luglio 2027</title>
-
   <meta name="description" content="La nostra partecipazione di matrimonio. Tocca per aprire e scoprire tutti i dettagli.">
 
-  <!-- ANTEPRIMA WHATSAPP E SOCIAL: NON VISIBILE NELLA PAGINA -->
+  <!-- ANTEPRIMA WHATSAPP E SOCIAL -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Roberta &amp; Christian">
   <meta property="og:url" content="https://tjcg2vhj44-hue.github.io/Partecipazione-Matrimonio/">
   <meta property="og:title" content="Roberta &amp; Christian — 10 Luglio 2027">
   <meta property="og:description" content="La nostra partecipazione di matrimonio. Tocca per aprire e scoprire tutti i dettagli.">
-
-  <!-- IMMAGINE ORIZZONTALE SOLO PER L'ANTEPRIMA SOCIAL -->
   <meta property="og:image" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
   <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
   <meta property="og:image:alt" content="Busta della partecipazione di Roberta e Christian">
   <meta property="og:image:type" content="image/png">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Roberta &amp; Christian — 10 Luglio 2027">
   <meta name="twitter:description" content="La nostra partecipazione di matrimonio. Tocca per aprire e scoprire tutti i dettagli.">
@@ -32,9 +29,9 @@
       --panna: #fbf9f3;
       --marrone: #765a43;
       --marrone-scuro: #594331;
-      --bordo: #e8dfd2;
+      --bordo: #eee5d8;
       --verde-oliva: #444b2c;
-      --verde-salvia: #e3e2c9;
+      --verde-salvia: #dcdcc0;
       --beige: #e9dfcd;
       --bianco: #fffdf8;
     }
@@ -57,8 +54,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    button,
-    a {
+    button, a {
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -105,7 +101,7 @@
       pointer-events: none;
     }
 
-    /* PARTECIPAZIONE: NASCOSTA FINO AL TOCCO */
+    /* PARTECIPAZIONE */
     .invitation {
       display: none;
       opacity: 0;
@@ -134,12 +130,25 @@
 
     /* SCHEDE AVORIO */
     .section {
+      position: relative;
       margin: 26px 0;
       padding: 30px 20px;
-      border: 1px solid #eee5d8;
+      border: 1px solid var(--bordo);
       border-radius: 16px;
       background: rgba(255, 253, 248, 0.82);
       box-shadow: 0 5px 18px rgba(86, 65, 44, 0.07);
+    }
+
+    .section + .section::before {
+      content: "";
+      position: absolute;
+      top: 9px;
+      left: 50%;
+      width: 76px;
+      height: 2px;
+      border-radius: 2px;
+      background: #c7c7ad;
+      transform: translateX(-50%);
     }
 
     .section h2 {
@@ -162,7 +171,7 @@
       font-style: italic;
     }
 
-    /* PULSANTI */
+    /* PULSANTI: STILE DELLA FOTO */
     .button-link,
     .copy-button {
       display: flex;
@@ -172,14 +181,14 @@
       justify-content: center;
       gap: 10px;
       margin: 20px auto 0;
-      padding: 15px 14px;
-      border: 0;
+      padding: 15px 12px;
+      border: none;
       border-radius: 10px;
       text-decoration: none;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.7px;
+      letter-spacing: 0.5px;
       line-height: 1.5;
       cursor: pointer;
       transition: transform 0.2s ease, filter 0.2s ease;
@@ -188,21 +197,30 @@
     .button-link:active,
     .copy-button:active {
       transform: scale(0.98);
+      filter: brightness(0.97);
     }
 
+    /* COME RAGGIUNGERCI: VERDE SALVIA */
     .location-button {
       background: var(--verde-salvia);
       color: #514d3a;
     }
 
+    .location-button .button-icon {
+      font-size: 25px;
+      font-weight: normal;
+      line-height: 1;
+    }
+
+    /* CONFERMA PRESENZA: VERDE OLIVA */
     .rsvp-button {
       background: var(--verde-oliva);
       color: var(--bianco);
     }
 
-    .copy-button {
-      background: var(--beige);
-      color: #514d3a;
+    .rsvp-button .button-icon {
+      font-size: 25px;
+      line-height: 1;
     }
 
     /* IBAN */
@@ -219,12 +237,24 @@
 
     .account-name {
       margin-top: 0 !important;
-      padding: 0 10px 10px;
+      padding: 0 10px 13px;
       border-radius: 0 0 9px 9px;
       background: #eee4d2;
       font-size: 15px !important;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+    }
+
+    /* COPIA IBAN: BEIGE */
+    .copy-button {
+      background: var(--beige);
+      color: #514d3a;
+    }
+
+    .copy-button .button-icon {
+      font-size: 25px;
+      font-weight: normal;
+      line-height: 1;
     }
 
     .copy-message {
@@ -277,9 +307,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
@@ -291,7 +319,7 @@
 <body>
   <div class="page">
 
-    <!-- BUSTA INIZIALE VERTICALE ORIGINALE -->
+    <!-- BUSTA CHIUSA -->
     <section class="envelope-area" id="envelopeArea">
       <button
         class="envelope-button"
@@ -300,7 +328,7 @@
         aria-label="Apri la partecipazione di Roberta e Christian"
       >
         <img
-          src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png"
+          src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png"
           alt="Busta chiusa della partecipazione di Roberta e Christian"
           fetchpriority="high"
         >
@@ -338,8 +366,8 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span aria-hidden="true">⌖</span>
-          COME RAGGIUNGERCI
+          <span class="button-icon" aria-hidden="true">♧</span>
+          <span>COME RAGGIUNGERCI</span>
         </a>
       </section>
 
@@ -356,8 +384,8 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span aria-hidden="true">♥</span>
-          CONFERMA LA TUA PRESENZA
+          <span class="button-icon" aria-hidden="true">♥</span>
+          <span>CONFERMA LA TUA PRESENZA</span>
         </a>
       </section>
 
@@ -375,8 +403,8 @@
         <p class="account-name">Christian Di Gaudio</p>
 
         <button class="copy-button" id="copyIban" type="button">
-          <span aria-hidden="true">▢</span>
-          COPIA IBAN
+          <span class="button-icon" aria-hidden="true">▢</span>
+          <span>COPIA IBAN</span>
         </button>
 
         <p class="copy-message" id="copyMessage" aria-live="polite"></p>
@@ -408,7 +436,7 @@
       isOpening = true;
 
       music.play().catch(function () {
-        // La partecipazione si apre anche se il browser blocca l'audio.
+        // Il browser potrebbe bloccare la riproduzione.
       });
 
       envelopeArea.classList.add("opening");
@@ -426,7 +454,7 @@
       }, 600);
     });
 
-    // COPIA IBAN
+    // Copia IBAN
     const copyButton = document.getElementById("copyIban");
     const copyMessage = document.getElementById("copyMessage");
     const ibanValue = "IT88Q0200816938000011001971";
