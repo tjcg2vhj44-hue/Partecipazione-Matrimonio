@@ -1,46 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fbf9f3">
-
   <title>Roberta &amp; Christian — 10 Luglio 2027</title>
-
   <meta name="description" content="La nostra partecipazione di matrimonio. Tocca per aprire e scoprire tutti i dettagli.">
-
   <!-- ANTEPRIMA WHATSAPP E SOCIAL -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Roberta &amp; Christian">
   <meta property="og:url" content="https://tjcg2vhj44-hue.github.io/Partecipazione-Matrimonio/">
   <meta property="og:title" content="Roberta &amp; Christian — 10 Luglio 2027">
   <meta property="og:description" content="La nostra partecipazione di matrimonio. Tocca per aprire e scoprire tutti i dettagli.">
-  <meta property="og:image" content="https://tjcg2vhj44-hue.github.io/Partecipazione-Matrimonio/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
-  <meta property="og:image:secure_url" content="https://tjcg2vhj44-hue.github.io/Partecipazione-Matrimonio/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
+  <meta property="og:image" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
+  <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
   <meta property="og:image:alt" content="Busta della partecipazione di Roberta e Christian">
   <meta property="og:image:type" content="image/png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Roberta &amp; Christian — 10 Luglio 2027">
   <meta name="twitter:description" content="La nostra partecipazione di matrimonio. Tocca per aprire e scoprire tutti i dettagli.">
-  <meta name="twitter:image" content="https://tjcg2vhj44-hue.github.io/Partecipazione-Matrimonio/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
-
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png">
   <style>
     :root {
       --panna: #fbf9f3;
       --marrone: #765a43;
       --marrone-scuro: #594331;
       --bordo: #e8dfd2;
+      --verde-oliva: #444b2c;
+      --verde-salvia: #e3e2c9;
+      --beige: #e9dfcd;
+      --bianco: #fffdf8;
     }
-
     * {
       box-sizing: border-box;
     }
-
     html {
       scroll-behavior: smooth;
     }
-
     body {
       margin: 0;
       min-height: 100vh;
@@ -50,18 +46,17 @@
       text-align: center;
       -webkit-font-smoothing: antialiased;
     }
-
-    button, a {
+    button,
+    a {
       -webkit-tap-highlight-color: transparent;
     }
-
     .page {
       width: 100%;
       max-width: 620px;
       margin: 0 auto;
       padding: 30px 20px 54px;
     }
-
+    /* BUSTA INIZIALE */
     .envelope-area {
       min-height: 85vh;
       display: flex;
@@ -71,7 +66,6 @@
       padding: 24px 0;
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-
     .envelope-button {
       display: block;
       width: 100%;
@@ -82,52 +76,34 @@
       cursor: pointer;
       outline-offset: 8px;
     }
-
     .envelope-button img {
       display: block;
       width: 100%;
       height: auto;
-      border-radius: 2px;
+      border-radius: 3px;
       box-shadow: 0 14px 38px rgba(86, 65, 44, 0.10);
     }
-
-    .tap-text {
-      margin: 25px 0 0;
-      color: var(--marrone);
-      font-size: 15px;
-      letter-spacing: 1.1px;
-      animation: gentlePulse 2.2s ease-in-out infinite;
-    }
-
-    @keyframes gentlePulse {
-      0%, 100% { opacity: 0.65; }
-      50% { opacity: 1; }
-    }
-
     .envelope-area.opening {
       opacity: 0;
       transform: translateY(-12px) scale(0.98);
       pointer-events: none;
     }
-
+    /* PARTECIPAZIONE */
     .invitation {
       display: none;
       opacity: 0;
       transform: translateY(12px);
     }
-
     .invitation.visible {
       display: block;
       animation: invitationAppear 1s ease forwards;
     }
-
     @keyframes invitationAppear {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-
     .invitation-image {
       display: block;
       width: 100%;
@@ -135,115 +111,136 @@
       margin: 0 auto 30px;
       box-shadow: 0 8px 28px rgba(86, 65, 44, 0.07);
     }
-
+    /* SCHEDE AVORIO */
     .section {
       margin: 26px 0;
-      padding: 27px 18px;
-      border: 1px solid var(--bordo);
-      background: rgba(255, 255, 255, 0.38);
+      padding: 30px 20px;
+      border: 1px solid #eee5d8;
+      border-radius: 16px;
+      background: rgba(255, 253, 248, 0.82);
+      box-shadow: 0 5px 18px rgba(86, 65, 44, 0.07);
     }
-
     .section h2 {
-      margin: 0 0 18px;
+      margin: 0 0 20px;
       color: var(--marrone-scuro);
-      font-size: 22px;
+      font-size: 23px;
       font-weight: normal;
-      line-height: 1.35;
+      line-height: 1.4;
     }
-
     .section p {
-      margin: 7px 0;
-      font-size: 16px;
+      margin: 8px 0;
+      font-size: 17px;
       line-height: 1.7;
     }
-
     .venue-name {
-      font-size: 21px !important;
+      margin-top: 22px !important;
+      font-size: 23px !important;
       font-style: italic;
     }
-
-    .button-link {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 13px 18px;
-      border: 1px solid #c8b59e;
-      color: var(--marrone-scuro);
+    /* PULSANTI */
+    .button-link,
+    .copy-button {
+      display: flex;
+      width: 100%;
+      min-height: 58px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px auto 0;
+      padding: 15px 14px;
+      border: 0;
+      border-radius: 10px;
       text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-size: 11px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 1px;
+      letter-spacing: 0.7px;
       line-height: 1.5;
-      transition: background 0.2s ease;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
     }
-
-    .button-link:hover {
-      background: #f0e9dd;
+    .button-link:active,
+    .copy-button:active {
+      transform: scale(0.98);
     }
-
+    /* COME RAGGIUNGERCI */
+    .location-button {
+      background: var(--verde-salvia);
+      color: #514d3a;
+    }
+    /* CONFERMA PRESENZA */
+    .rsvp-button {
+      background: var(--verde-oliva);
+      color: var(--bianco);
+    }
+    /* COPIA IBAN */
+    .copy-button {
+      background: var(--beige);
+      color: #514d3a;
+    }
     .iban {
       overflow-wrap: anywhere;
-      margin: 20px 0 8px !important;
-      font-family: Arial, sans-serif;
+      margin: 22px 0 6px !important;
+      padding: 13px 10px;
+      border-radius: 9px;
+      background: #eee4d2;
+      color: var(--marrone);
       font-size: 16px !important;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.3px;
     }
-
     .account-name {
+      margin-top: 0 !important;
+      padding: 0 10px 10px;
+      border-radius: 0 0 9px 9px;
+      background: #eee4d2;
       font-size: 15px !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-
-    .copy-button {
-      display: inline-block;
-      margin-top: 13px;
-      padding: 12px 17px;
-      border: 1px solid #c8b59e;
-      background: transparent;
-      color: var(--marrone-scuro);
-      cursor: pointer;
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-    }
-
     .copy-message {
       min-height: 20px;
-      margin-top: 9px;
-      font-size: 13px;
+      margin-top: 12px !important;
+      font-size: 13px !important;
     }
-
     .closing {
       margin-top: 34px;
-      color: var(--marrone);
-      font-size: 17px;
+      color: #817d69;
+      font-size: 19px;
+      font-style: italic;
       line-height: 1.8;
     }
-
     .heart {
-      color: #a17f64;
+      color: #77795a;
+      font-style: normal;
     }
-
     @media (max-width: 480px) {
       .page {
         padding: 22px 16px 40px;
       }
-
       .envelope-area {
         min-height: 82vh;
       }
-
       .section {
-        padding: 24px 14px;
+        padding: 26px 16px;
+        margin: 24px 0;
       }
-
       .section h2 {
-        font-size: 20px;
+        font-size: 22px;
+      }
+      .section p {
+        font-size: 17px;
+      }
+      .button-link,
+      .copy-button {
+        min-height: 58px;
+        font-size: 12px;
+        padding: 14px 10px;
       }
     }
-
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
@@ -251,11 +248,11 @@
     }
   </style>
 </head>
-
 <body>
   <div class="page">
-
-    <!-- BUSTA CHIUSA -->
+    <!-- BUSTA CHIUSA
+         La scritta "Tocca per aprire" è già nell'immagine:
+         non viene aggiunta una seconda volta dal codice. -->
     <section class="envelope-area" id="envelopeArea">
       <button
         class="envelope-button"
@@ -264,135 +261,111 @@
         aria-label="Apri la partecipazione di Roberta e Christian"
       >
         <img
-          src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/F68638F1-0D7B-4C8B-898D-AA1EE260C23C.png"
-          alt="Busta chiusa della partecipazione"
+          src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/65422DDD-A7B1-4361-BA47-A6EEBC611393.png"
+          alt="Partecipazione chiusa di Roberta e Christian, 10 luglio 2027"
           fetchpriority="high"
         >
       </button>
-
-      <p class="tap-text">Tocca per aprire</p>
     </section>
-
-    <!-- MUSICA -->
+    <!-- MUSICA DI SOTTOFONDO -->
     <audio id="weddingMusic" loop preload="auto" playsinline>
       <source
         src="hitslab-wedding-wedding-anniversary-music-282316.mp3"
         type="audio/mpeg"
       >
     </audio>
-
-    <!-- PARTECIPAZIONE -->
+    <!-- DETTAGLI DELLA PARTECIPAZIONE -->
     <main class="invitation" id="invitation" inert>
-
       <img
         class="invitation-image"
         src="https://raw.githubusercontent.com/tjcg2vhj44-hue/Partecipazione-Matrimonio/main/D98E7FC4-ED3B-4340-85BE-FB7B3311C11B.png"
         alt="Partecipazione di matrimonio di Roberta e Christian"
       >
-
       <!-- LOCATION -->
       <section class="section">
         <h2>La cerimonia e il ricevimento</h2>
-
         <p class="venue-name">Casa La Carrubbazza</p>
         <p>Via Raffaello Sanzio, 38</p>
         <p>San Gregorio di Catania (CT)</p>
-
         <a
-          class="button-link"
+          class="button-link location-button"
           href="https://maps.app.goo.gl/R6av7Xr89zqoLRF26?g_st=ic"
           target="_blank"
           rel="noopener noreferrer"
         >
-          📍 COME RAGGIUNGERCI
+          <span aria-hidden="true">♧</span>
+          COME RAGGIUNGERCI
         </a>
       </section>
-
-      <!-- RSVP -->
+      <!-- CONFERMA PRESENZA -->
       <section class="section">
         <h2>Saremo felici di festeggiare con voi</h2>
-
         <p>È gradita gentile conferma</p>
         <p>entro il 31 Maggio 2027</p>
-
         <a
-          class="button-link"
+          class="button-link rsvp-button"
           href="https://docs.google.com/forms/u/0/d/1gxAsWCoNh5LnWsVcipgqoXPMfQTcgq6Ike59wa_bkO8/viewform"
           target="_blank"
           rel="noopener noreferrer"
         >
-          🤍 CONFERMA LA TUA PRESENZA
+          <span aria-hidden="true">♥</span>
+          CONFERMA LA TUA PRESENZA
         </a>
       </section>
-
       <!-- IBAN -->
       <section class="section">
         <h2>Un pensiero per noi</h2>
-
         <p>Se desiderate accompagnarci</p>
         <p>in questo nuovo capitolo:</p>
-
         <p class="iban" id="ibanValue">
           IT88Q0200816938000011001971
         </p>
-
         <p class="account-name">Christian Di Gaudio</p>
-
         <button class="copy-button" id="copyIban" type="button">
-          📋 COPIA IBAN
+          <span aria-hidden="true">▢</span>
+          COPIA IBAN
         </button>
-
         <p class="copy-message" id="copyMessage" aria-live="polite"></p>
       </section>
-
       <p class="closing">
-        Grazie di cuore per condividere con noi<br>
-        la nostra Dolce Vita. <span class="heart">♡</span>
+        Grazie di cuore per condividere<br>
+        con noi la nostra Dolce Vita.<br>
+        <span class="heart">♡</span>
       </p>
-
     </main>
   </div>
-
   <script>
     const envelopeArea = document.getElementById("envelopeArea");
     const openEnvelope = document.getElementById("openEnvelope");
     const invitation = document.getElementById("invitation");
     const music = document.getElementById("weddingMusic");
-
     let isOpening = false;
-
     // Volume concordato: 0.05 = 5%
     music.volume = 0.05;
-
-    // Apertura della busta e avvio della musica
+    // Apertura della busta e avvio della musica al tocco
     openEnvelope.addEventListener("click", function () {
       if (isOpening) return;
       isOpening = true;
-
+      // Il tentativo di riproduzione avviene direttamente al tocco.
       music.play().catch(function () {
-        // Il browser potrebbe bloccare la riproduzione.
+        // Alcuni browser potrebbero bloccare la riproduzione.
       });
-
       envelopeArea.classList.add("opening");
       openEnvelope.disabled = true;
-
       window.setTimeout(function () {
         envelopeArea.style.display = "none";
         invitation.inert = false;
         invitation.classList.add("visible");
-
         window.scrollTo({
           top: 0,
           behavior: "smooth"
         });
       }, 600);
     });
-
     // Copia IBAN
     const copyButton = document.getElementById("copyIban");
     const copyMessage = document.getElementById("copyMessage");
     const ibanValue = "IT88Q0200816938000011001971";
-
     copyButton.addEventListener("click", async function () {
       try {
         if (navigator.clipboard && window.isSecureContext) {
@@ -405,15 +378,12 @@
           document.body.appendChild(temporaryInput);
           temporaryInput.focus();
           temporaryInput.select();
-
           const copied = document.execCommand("copy");
           temporaryInput.remove();
-
           if (!copied) {
             throw new Error("Copia non riuscita");
           }
         }
-
         copyMessage.textContent = "IBAN copiato correttamente 🤍";
       } catch (error) {
         copyMessage.textContent =
